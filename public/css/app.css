@@ -22439,6 +22439,13 @@ html {
   font-size: 14px;
 }
 
+.pfz {
+  position: fixed;
+  bottom: 25px;
+  right: 30px;
+  z-index: 10000;
+}
+
 .m {
   background-color: #ffffcc;
 }
