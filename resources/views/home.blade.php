@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-
 <div class="by aha ahl">
   <div class="dp"> <!-- grid" data-isotope='{ "itemSelector": ".grid-item"}'> -->
 
@@ -230,7 +227,7 @@
                 <div class="axx">
                   <button type="button" class="oh axy" data-dismiss="modal">Cancel</button>
                   <button type="button" class="oh axy" data-dismiss="modal">
-                    <strong>Continue</strong>
+                    <strong>Done</strong>
                   </button>
                 </div>
             </div>
