@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bv" data-example-id="">
+<div class="fn kd" data-example-id=""> <!-- class="bv" data-example-id=""> -->
 <ul class="bow box afh">
   <li class="rv b agz">
     <img class="bos aff yb" src="../assets/img/avatar-mdo.png" />
@@ -11,7 +11,7 @@
         <h6>Mark Otto</h6>
       </div>
       <p>
-        Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet rutrum.
+        Donec ullamcorper nulla non metus auctor fringilla.
       </p>
       <img class="boz" src="../assets/img/instagram_17.jpg" />
       <ul class="bow">

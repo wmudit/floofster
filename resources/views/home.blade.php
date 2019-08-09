@@ -211,25 +211,29 @@
 
                     <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.</p>
                 </div> -->
-                <div class="modal-body">
-                  <div class="container">
-                  <div class="form-group row">
-                    <label for="caption" class="col-sm-3">Caption</label>
-                    <input type="text" class="form-control col-sm-9" id="caption" placeholder="">
+                <form action="/p" enctype="multipart/form-data" method="post">
+                @csrf
+                  <div class="modal-body">
+                    <div class="container">
+                      <div class="form-group row">
+                        <label for="caption" class="col-sm-3">Caption</label>
+                        <input type="text" class="form-control col-sm-9" id="caption" name="caption" placeholder="">
+                      </div>
+                      <!-- <input type="text" class="form-control" placeholder="Message" /> -->
+                      <div class="form-group row">
+                        <label for="file" class="col-sm-3">Choose file</label>
+                        <input type="file" class="form-control-file col-sm-9" name="image" id="file">
+                      </div>
+                    </div>
                   </div>
-                    <!-- <input type="text" class="form-control" placeholder="Message" /> -->
-                    <div class="form-group row">
-                      <label for="file" class="col-sm-3">Choose file</label>
-                      <input type="file" class="form-control-file col-sm-9" id="file">
-                    </div>
-                    </div>
-                </div>
-                <div class="axx">
-                  <button type="button" class="oh axy" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="oh axy" data-dismiss="modal">
-                    <strong>Done</strong>
-                  </button>
-                </div>
+                  <div class="axx">
+                    <button type="button" class="oh axy" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="oh axy" data-dismiss="modal" onclick="document.getElementById('submit-form').click()">
+                      <strong>Done</strong>
+                    </button>
+                    <input id="submit-form" type="submit" style="display:none">
+                  </div>
+                </form>
             </div>
         </div>
     </div>
