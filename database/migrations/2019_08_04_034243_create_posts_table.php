@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('media');
             $table->timestamps();
             $table->index('user_id');
+            $table->index('post_hash');
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -11,9 +12,12 @@ class PostsController extends Controller
         //return view('posts.create');
     }
 
-    public function show()
+    public function show($post_hash)
     {
-
+        $post = Post::findOrFail($post_hash);
+        return view('posts.show', [
+            'post' => $post,
+        ]);
     }
 
     public function store(Request $request)
@@ -28,8 +32,15 @@ class PostsController extends Controller
             'post_hash' => 'required',
         ]);
 
-        auth()->user()->posts()->create($data);
+        $image_path = request('media')->store('uploads', 'public');
 
-        //dd(request()->all());
+        auth()->user()->posts()->create([
+            'caption' => $data['caption'],
+            'media' => $image_path,
+            'post_hash' => $hash,
+        ]);
+
+        return redirect('/');
+
     }
 }
