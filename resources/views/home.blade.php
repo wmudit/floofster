@@ -222,7 +222,7 @@
                       <!-- <input type="text" class="form-control" placeholder="Message" /> -->
                       <div class="form-group row">
                         <label for="file" class="col-sm-3">Choose file</label>
-                        <input type="file" class="form-control-file col-sm-9" name="image" id="file">
+                        <input type="file" class="form-control-file col-sm-9" name="media" id="file">
                       </div>
                     </div>
                   </div>
