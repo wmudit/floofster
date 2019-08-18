@@ -11,9 +11,10 @@
         <h6>Mark Otto</h6>
       </div>
       <p>
-        Donec ullamcorper nulla non metus auctor fringilla.
+        {{ $post->caption }}
       </p>
-      <img class="boz" src="../assets/img/instagram_17.jpg" />
+      <!-- <img class="boz" src="../assets/img/instagram_17.jpg" /> -->
+      <img class="boz" src=../storage/{{ $post->media }}>
       <ul class="bow">
         <li class="rv">
           <img class="bos aff yb" src="../assets/img/avatar-dhg.png" />

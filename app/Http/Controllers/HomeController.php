@@ -11,10 +11,12 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+    private $limit = 0;
+
     public function __construct()
     {
-        //$this->middleware('auth');
-        //$this->middleware('guest');
+        $this->limit = 20;
     }
 
     /**
@@ -22,8 +24,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($offset = 0)
     {
-        return view('home');
+        $posts = \App\Post::orderBy('created_at', 'desc')->offset($offset)->limit($this->limit)->get();
+        return view('home', [
+            'posts' => $posts,
+        ]);
     }
 }

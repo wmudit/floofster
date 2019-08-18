@@ -4,7 +4,33 @@
 <div class="by aha ahl">
   <div class="dp"> <!-- grid" data-isotope='{ "itemSelector": ".grid-item"}'> -->
 
+    @foreach($posts as $post)
     <div class="fk ek ey ">
+      <div class="pz afo vy">
+        <div class="qa">
+          <div class="bpb">
+              <small class="acx axc">
+                {{ $post->created_at }}
+              </small>
+              <h6>
+                {{ $post->user->username }}
+              </h6>
+          </div>
+
+          <div data-grid="images" data-target-height="150">
+            <img class="bos" data-width="640" data-height="640" data-action="zoom" src="storage/{{ $post->media }}">
+          </div>
+          <p>
+            {{ $post->caption }}
+          </p>
+          <button class="cg nz ok"><span class="h bmc"></span></button>
+          <button class="cg nz ok"><span class="h bhu"></span></button>
+        </div>
+      </div>
+    </div>
+    @endforeach
+
+    <!-- <div class="fk ek ey ">
       <div class="pz afo vy">
         <div class="qa">
           <div class="bpb">
@@ -182,7 +208,7 @@
           <button class="cg nz ok"><span class="h bhu"></span></button>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>

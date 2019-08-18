@@ -5,7 +5,7 @@
   <div class="by">
     <div class="bor">
       <img class="us bos" src="{{ $user->profile->image_url }}"> <!--../assets/img/avatar-dhg.png">-->
-      <h3 class="bou">{{ $user->name }}</h3>
+      <h3 class="bou">{{ $user->username }}</h3>
       <p class="bot">
         {{ $user->profile->description }}
       </p>
@@ -15,19 +15,48 @@
   <nav class="bov">
     <ul class="nav ph xm">
       <li class="pi">
-        <a class="pg active" href="#">Photos</a>
+        <a class="pg active" href="javascript:void(0)">{{ $user->posts->count() }} Posts</a>
       </li>
-      <li class="pi">
+      <!-- <li class="pi">
         <a class="pg" href="#">Others</a>
       </li>
       <li class="pi">
         <a class="pg" href="#">Anothers</a>
-      </li>
+      </li> -->
     </ul>
   </nav>
 </div>
 
-<div class="by afl" data-grid="images">
+<div class="by aha ahl afl">
+  <div class="dp"> <!-- grid" data-isotope='{ "itemSelector": ".grid-item"}'> -->
+  @foreach($user->posts_desc as $post)
+    <div class="fk ek ey ">
+      <div class="pz afo vy">
+        <div class="qa">
+          <!-- <div class="bpb">
+              <small class="acx axc">4 min</small>
+              <h6>Dave Gamache</h6>
+          </div> -->
+
+          <div data-grid="images" data-target-height="150">
+            <img class="bos" data-width="640" data-height="640" data-action="zoom" src="../storage/{{ $post->media }}">
+          </div>
+          <p>
+            {{ $post->caption }}
+          </p>
+          <button class="cg nz ok"><span class="h bmc"></span></button>
+          <button class="cg nz ok"><span class="h bhu"></span></button>
+        </div>
+      </div>
+    </div>
+    @endforeach
+  </div>
+</div>
+
+</div>
+
+
+<!-- <div class="by afl" data-grid="images">
   <div>
     <img data-width="640" data-height="400" data-action="zoom" src="../assets/img/instagram_5.jpg">
   </div>
@@ -91,5 +120,5 @@
   <div>
     <img data-width="640" data-height="640" data-action="zoom" src="../assets/img/instagram_2.jpg">
   </div>
-</div>
+</div> -->
 @endsection

@@ -7,9 +7,9 @@ use App\User;
 
 class ProfilesController extends Controller
 {
-    public function index($user)
+    public function index($username)
     {
-        $user = User::findOrFail($user);
+        $user = User::where('username', $username)->firstOrFail();
         return view('profiles.profile', [
             'user' => $user,
         ]);
