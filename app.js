@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var session = require('express-session');
@@ -5,6 +6,7 @@ var { uuid } = require('uuidv4');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var dbPool = require('./routes/lib/database');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -32,7 +34,7 @@ app.use(session({
                   }
                 }))
 
-app.use("/public", express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
@@ -50,7 +52,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('errors/error');
+  res.render(`errors/error-${err.status}`);
 });
 
 module.exports = app;
