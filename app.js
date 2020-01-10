@@ -6,7 +6,7 @@ var { uuid } = require('uuidv4');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var dbPool = require('./routes/lib/database');
+var user = require('./models/UserModel');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
