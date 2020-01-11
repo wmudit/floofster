@@ -13,8 +13,8 @@ class User {
         let password_encypted = "313d1asd"; // bcrypt.hashSync(password, process.env.HASH_SALT_BCRYPT);
         let q = `INSERT INTO user_details (primary_id, hash, full_name, email_address, password, password_encrypted, created_on, updated_on) VALUES (NULL, '12365478', ${pool.escape(full_name)}, ${pool.escape(email_address)}, ${pool.escape(password)}, ${pool.escape(password_encypted)}, '${moment().format('YYYY-MM-DD HH:mm:ss')}', '${moment().format('YYYY-MM-DD HH:mm:ss')}');`;
         await this.executeQuery(q)
-        .then(e => console.log("Query executed"))
-        .catch(e => console.log("Error"));
+        .then(e => { return true; })
+        .catch(e => { return false; });
     }
 
     async executeQuery(query) {
@@ -35,9 +35,11 @@ class User {
 
 }
 
-let u = new User();
-u.registerUser({
-    full_name: 'Test User',
-    email_address: 'tese@gmail.com',
-    password: 'testpassword'
-})
+// let u = new User();
+// u.registerUser({
+//     full_name: 'Test User',
+//     email_address: 'tese@gmail.com',
+//     password: 'testpassword'
+// })
+
+module.exports = User;

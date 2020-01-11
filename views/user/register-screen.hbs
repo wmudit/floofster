@@ -4,13 +4,31 @@
 <main class="main" id="top">
     <div class="container-fluid">
     <div class="row min-vh-100 flex-center no-gutters">
-        <div class="col-lg-8 col-xxl-5 py-3"><img class="bg-auth-circle-shape" src="../../assets/img/illustrations/bg-shape.png" alt="" width="250"><img class="bg-auth-circle-shape-2" src="../../assets/img/illustrations/shape-1.png" alt="" width="150">
+        <div class="col-lg-8 col-xxl-5 py-3"><img class="bg-auth-circle-shape" src="/public/assets/img/illustrations/bg-shape.png" alt="" width="250"><img class="bg-auth-circle-shape-2" src="/public/assets/img/illustrations/shape-1.png" alt="" width="150">
+        {{#if alert}}
+            <div class="row">
+            <div class="col-12">
+                {{#if alert.warning}}
+                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                        <strong>Holy guacamole!</strong> Looks like you should check in on some of those fields below.
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="font-weight-light" aria-hidden="true">×</span></button>
+                    </div>
+                {{/if}}
+                {{#if alert.success}}
+                    <div class="alert alert-success text-center" role="alert">
+                        <strong>Well done!</strong> You successfully registered to Floofster.
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="font-weight-light" aria-hidden="true">×</span></button>
+                    </div>
+                {{/if}}
+            </div>
+            </div>
+        {{/if}}
         <div class="card overflow-hidden z-index-1">
             <div class="card-body p-0">
             <div class="row no-gutters h-100">
                 <div class="col-md-5 text-white text-center bg-card-gradient">
                 <div class="position-relative p-4 pt-md-5 pb-md-7">
-                    <div class="bg-holder bg-auth-card-shape" style="background-image:url(../../assets/img/illustrations/half-circle.png);"></div>
+                    <div class="bg-holder bg-auth-card-shape" style="background-image:url(/public/assets/img/illustrations/half-circle.png);"></div>
                     <!--/.bg-holder-->
                     <div class="z-index-1 position-relative"><a class="text-white mb-4 text-sans-serif font-weight-extra-bold fs-4 d-inline-block" href="/">floofster</a>
                     <p class="text-white opacity-75">With the power of Flooster, you can now focus only on functionaries for your digital products, while leaving the UI design on us!</p>
@@ -23,14 +41,24 @@
                 <div class="col-md-7 d-flex flex-center">
                 <div class="p-4 p-md-5 flex-grow-1">
                     <h3>Register</h3>
-                    <form>
-                    <div class="form-group"><label for="card-name">Name</label><input class="form-control" type="text" id="card-name" /></div>
-                    <div class="form-group"><label for="card-email">Email address</label><input class="form-control" type="email" id="card-email" /></div>
+                    <form action="/user/register" method="post">
+                    <div class="form-group"><label for="card-name">Name {{#if alert.warning.message.input_name}}<span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{alert.warning.message.input_name}}</span>{{/if}}</label><input class="form-control" type="text" id="card-name" name="input_name" /></div>
+                    <div class="form-group"><label for="card-email">Email address {{#if alert.warning.message.input_email}}<span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{alert.warning.message.input_email}}</span>{{/if}}</label><input class="form-control" type="email" id="card-email" name="input_email" /></div>
                     <div class="form-row">
-                        <div class="form-group col-6"><label for="card-password">Password</label><input class="form-control" type="password" id="card-password" /></div>
-                        <div class="form-group col-6"><label for="card-confirm-password">Confirm Password</label><input class="form-control" type="password" id="card-confirm-password" /></div>
+                        <div class="form-group col-6"><label for="card-password">Password</label><input class="form-control" type="password" id="card-password" name="input_password" /></div>
+                        <div class="form-group col-6"><label for="card-confirm-password">Confirm Password</label><input class="form-control" type="password" id="card-confirm-password" name="input_confirm_password" /></div>
                     </div>
-                    <div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="card-register-checkbox" /><label class="custom-control-label" for="card-register-checkbox">I accept the <a href="#!">terms </a>and <a href="#!">privacy policy</a></label></div>
+                    {{#if alert.warning.message}}
+                        <div class="form-group">
+                            {{#if alert.warning.message.input_password}}
+                                <span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{alert.warning.message.input_password}}</span>
+                            {{/if}}
+                            {{#if alert.warning.message.input_tnc}}
+                                <span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{alert.warning.message.input_tnc}}</span>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                    <div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="card-register-checkbox" name="input_tnc" /><label class="custom-control-label" for="card-register-checkbox">I accept the <a href="#!">terms </a>and <a href="#!">privacy policy</a></label></div>
                     <div class="form-group"><button class="btn btn-primary btn-block mt-3" type="submit" name="submit">Register</button></div>
                     </form>
                     <div class="w-100 position-relative mt-4">
