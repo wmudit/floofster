@@ -5,6 +5,18 @@
     <div class="container-fluid">
     <div class="row min-vh-100 flex-center no-gutters">
         <div class="col-lg-8 col-xxl-5 py-3"><img class="bg-auth-circle-shape" src="/public/assets/img/illustrations/bg-shape.png" alt="" width="250"><img class="bg-auth-circle-shape-2" src="/public/assets/img/illustrations/shape-1.png" alt="" width="150">
+        {{#if alert}}
+            <div class="row">
+            <div class="col-12">
+                {{#if alert.warning}}
+                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                        <strong>Holy guacamole!</strong> Looks like you should check in on some of those fields below.
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="font-weight-light" aria-hidden="true">×</span></button>
+                    </div>
+                {{/if}}
+            </div>
+            </div>
+        {{/if}}
         <div class="card overflow-hidden z-index-1">
             <div class="card-body p-0">
             <div class="row no-gutters h-100">
@@ -24,12 +36,12 @@
                 <div class="col-md-7 d-flex flex-center">
                 <div class="p-4 p-md-5 flex-grow-1">
                     <h3>Account Login</h3>
-                    <form>
-                    <div class="form-group"><label for="card-email">Email address</label><input class="form-control" id="card-email" type="email" /></div>
+                    <form action="/user/login" method="post">
+                    <div class="form-group"><label for="card-email">Email address {{#if alert.warning.message.input_email}}<span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{alert.warning.message.input_email}}</span>{{/if}}</label><input class="form-control" id="card-email" type="email" name="input_email" /></div>
                     <div class="form-group">
-                        <div class="d-flex justify-content-between"><label for="card-password">Password</label><a class="fs--1" href="forgot-password.html">Forgot Password?</a></div><input class="form-control" id="card-password" type="password" />
+                        <div class="d-flex justify-content-between"><label for="card-password">Password {{#if alert.warning.message.input_password}}<span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{alert.warning.message.input_password}}</span>{{/if}}</label><a class="fs--1" href="forgot-password.html">Forgot Password?</a></div><input class="form-control" id="card-password" type="password" />
                     </div>
-                    <div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="card-checkbox" checked="checked" /><label class="custom-control-label" for="card-checkbox">Remember me</label></div>
+                    <div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="card-checkbox" /><label class="custom-control-label" for="card-checkbox">Remember me</label></div>
                     <div class="form-group"><button class="btn btn-primary btn-block mt-3" type="submit" name="submit">Log in</button></div>
                     </form>
                     <div class="w-100 position-relative mt-4">

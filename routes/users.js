@@ -31,10 +31,24 @@ router.get('/register', function (req, res, next) {
 	});
 });
 
-router.post('/login', async function (req, res, next) {
-	let userData = await login(user);
-	if (userData) {
+let validLoginInput = [
+	body('input_email', 'Invalid email address').trim().escape().isEmail().normalizeEmail(),
+	body('input_password', 'Password cannot be empty').escape().not().isEmpty()
+]
 
+router.post('/login', validLoginInput, async function (req, res, next) {
+	let errors = validationResult(req);
+	if(!errors.isEmpty()) {
+		let alertObj = {}, warningObj = {}, messsageObj = {};
+		errors.errors.map(e => {
+			messsageObj[e.param] = e.msg;
+		});
+		warningObj.message = messsageObj;
+		alertObj.warning = warningObj;
+		res.render('user/login-screen', {
+			title: 'Login to Floofster',
+			alert: alertObj
+		})
 	} else {
 
 	}
@@ -44,9 +58,9 @@ router.post('/logout', async function (req, res, next) {
 
 });
 
-let validInput = [
+let validRegisterInput = [
 	body('input_name', 'Name cannot be empty').not().isEmpty().trim().escape(), 
-	body('input_email', 'You entered an invalid email address').trim().escape().isEmail().normalizeEmail(),
+	body('input_email', 'Invalid email address').trim().escape().isEmail().normalizeEmail(),
 	body('input_password', 'Password must be atleast 6 characters long').escape().isLength({ min: 6}),
 	body('input_confirm_password', 'Passwords do not match').escape().not().isEmpty().custom((value, {req}) => { 
 		if(value !== req.body.input_password)
@@ -55,7 +69,7 @@ let validInput = [
 	body('input_tnc', 'You have to accept the terms & conditions').not().isEmpty()
 ]
 
-router.post('/register', validInput, async function (req, res, next) {
+router.post('/register', validRegisterInput, async function (req, res, next) {
 	let errors = validationResult(req);
 	if(!errors.isEmpty()) {
 		let alertObj = {}, warningObj = {}, messsageObj = {};
