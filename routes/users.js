@@ -3,28 +3,28 @@ var router = express.Router();
 var pool = require('../lib/database');
 
 router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+	res.send('respond with a resource');
 });
 
 router.get('/login', function (req, res, next) {
-  res.render('user/login-screen', {
-    title: 'Login to Floofster'
-  });
+	res.render('user/login-screen', {
+		title: 'Login to Floofster'
+	});
 });
 
 router.get('/register', function (req, res, next) {
-  res.render('user/register-screen', {
-    title: 'Register on Floofster'
-  });
+	res.render('user/register-screen', {
+		title: 'Register on Floofster'
+	});
 });
 
 router.post('/login', async function (req, res, next) {
-  let userData = await login(user);
-  if (userData) {
+	let userData = await login(user);
+	if (userData) {
 
-  } else {
+	} else {
 
-  }
+	}
 });
 
 router.post('/logout', async function (req, res, next) {
@@ -32,7 +32,7 @@ router.post('/logout', async function (req, res, next) {
 });
 
 router.post('/register', async function (req, res, next) {
-  
+
 });
 
 module.exports = router;
