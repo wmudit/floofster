@@ -50,7 +50,22 @@ router.post('/login', validLoginInput, async function (req, res, next) {
 			alert: alertObj
 		})
 	} else {
-
+		let loginResult = await userController.login(req.body);
+		if(loginResult) {
+			req.session.loggedIn = true;
+			req.session.userData = loginResult;
+			res.redirect('/');
+		} else {
+			res.render('user/login', {
+				alert : {
+					warning: {
+						message : {
+							invalidLogin : true
+						}
+					}
+				}
+			})
+		}
 	}
 });
 
@@ -62,9 +77,10 @@ let validRegisterInput = [
 	body('input_name', 'Name cannot be empty').not().isEmpty().trim().escape(), 
 	body('input_email', 'Invalid email address').trim().escape().isEmail().normalizeEmail(),
 	body('input_password', 'Password must be atleast 6 characters long').escape().isLength({ min: 6}),
-	body('input_confirm_password', 'Passwords do not match').escape().not().isEmpty().custom((value, {req}) => { 
-		if(value !== req.body.input_password)
+	body('input_confirm_password', 'Passwords do not match').not().isEmpty().custom((value, {req}) => { 
+		if(value != req.body.input_password)
 			return false;
+		return true;
 	}),
 	body('input_tnc', 'You have to accept the terms & conditions').not().isEmpty()
 ]
@@ -83,10 +99,18 @@ router.post('/register', validRegisterInput, async function (req, res, next) {
 			alert: alertObj
 		})
 	} else {
-		let resultObj = await userController.register(req.body);
-		res.render('user/register-screen');
+		let registerResult = await userController.register(req.body);
+		if(registerResult) {
+			res.render('user/register-screen', {
+				alert : {
+					success : true
+				}
+			});
+		} else {
+			res.status(500);
+			res.render('errors/error-500');
+		}
 	}
 });
-
 
 module.exports = router;

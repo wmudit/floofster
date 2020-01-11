@@ -10,7 +10,11 @@
             <div class="col-12">
                 {{#if alert.warning}}
                     <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-                        <strong>Holy guacamole!</strong> Looks like you should check in on some of those fields below.
+                        {{#if alert.warning.message.invalidLogin}}
+                            <strong>Holy guacamole!</strong> You should check the credentials you entered
+                        {{else}}
+                            <strong>Holy guacamole!</strong> Looks like you should check in on some of those fields below.
+                        {{/if}}
                         <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="font-weight-light" aria-hidden="true">×</span></button>
                     </div>
                 {{/if}}
@@ -39,7 +43,7 @@
                     <form action="/user/login" method="post">
                     <div class="form-group"><label for="card-email">Email address {{#if alert.warning.message.input_email}}<span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{alert.warning.message.input_email}}</span>{{/if}}</label><input class="form-control" id="card-email" type="email" name="input_email" /></div>
                     <div class="form-group">
-                        <div class="d-flex justify-content-between"><label for="card-password">Password {{#if alert.warning.message.input_password}}<span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{alert.warning.message.input_password}}</span>{{/if}}</label><a class="fs--1" href="forgot-password.html">Forgot Password?</a></div><input class="form-control" id="card-password" type="password" />
+                        <div class="d-flex justify-content-between"><label for="card-password">Password {{#if alert.warning.message.input_password}}<span class="badge badge-warning" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{alert.warning.message.input_password}}</span>{{/if}}</label><a class="fs--1" href="forgot-password.html">Forgot Password?</a></div><input class="form-control" id="card-password" type="password" name="input_password" />
                     </div>
                     <div class="custom-control custom-checkbox"><input class="custom-control-input" type="checkbox" id="card-checkbox" /><label class="custom-control-label" for="card-checkbox">Remember me</label></div>
                     <div class="form-group"><button class="btn btn-primary btn-block mt-3" type="submit" name="submit">Log in</button></div>
